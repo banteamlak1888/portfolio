@@ -22,7 +22,7 @@ const resources = {
         }
       },
       hero: {
-        greeting: "Hello, I'm Yibeltal Gashaw",
+        greeting: "Hello, I'm Yibeltal",
         title: "Full Stack Developer",
         description: "Crafting robust and scalable web applications with modern technologies. Passionate about creating exceptional user experiences and efficient backend solutions.",
         downloadCV: "Download CV",
@@ -54,7 +54,7 @@ const resources = {
         }
       },
       hero: {
-        greeting: "ሰላም፣ እኔ ይብልጣል ጋሻው እባላለሁ",
+        greeting: "ሰላም፣ እኔ ይብልጣል እባላለሁ",
         title: "ሙሉ የስራ ዝርዝር ገንቢ",
         description: "በዘመናዊ ቴክኖሎጂዎች ጠንካራ እና ስኬላብል የድር መተግበሪያዎችን እሰራለሁ። ልዩ የተጠቃሚ ተሞክሮዎችን እና ውጤታማ የኋላ-መጨረሻ መፍትሄዎችን ለመፍጠር ጉጉት አለኝ።",
         downloadCV: "ሲቪ አውርድ"

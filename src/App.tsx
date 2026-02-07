@@ -1,66 +1,28 @@
 import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ExternalLink, Code2, Database, Layout, Server, Menu, X, Home, FolderOpen, MessageSquare } from 'lucide-react';
+import { Github, Linkedin, Mail, Code2, Database, Layout, Server, Menu, X, Home, FolderOpen, MessageSquare, ArrowUpRight, FeatherIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './components/LanguageSwitcher';
 import './translations/i18n';
+import FeaturedSection from './components/FeaturedSection';
 
-// Add these animation variants before the App function
 const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
+  initial: { opacity: 0, y: 40 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 }
+  transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
 };
 
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.3,
-      delayChildren: 0.2
-    }
-  }
-};
-
-// Update animation variants with slower, smoother transitions
-const smoothFadeIn = {
+const fadeIn = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { 
-    duration: 2,
-    ease: [0.43, 0.13, 0.23, 0.96] // Smooth easing curve
-  }
+  transition: { duration: 1.2, ease: [0.22, 1, 0.36, 1] }
 };
 
-const smoothSlideUp = {
-  initial: { y: 100, opacity: 0 },
-  animate: { y: 0, opacity: 1 }
-};
-
-const smoothSlideInFromLeft = {
-  initial: { x: -100, opacity: 0 },
-  animate: { x: 0, opacity: 1 },
-  transition: { 
-    duration: 2.5,
-    ease: [0.43, 0.13, 0.23, 0.96],
-    staggerChildren: 0.3
-  }
-};
-
-const smoothSlideInFromRight = {
-  initial: { x: 100, opacity: 0 },
-  animate: { x: 0, opacity: 1 },
-  transition: { 
-    duration: 2.5,
-    ease: [0.43, 0.13, 0.23, 0.96]
-  }
-};
-
-// Add this for hover animations
-const smoothHover = {
-  scale: 1.05,
-  transition: {
-    duration: 0.8, // Slower hover effect
-    ease: [0.43, 0.13, 0.23, 0.96]
+const stagger = {
+  animate: {
+    transition: {
+      staggerChildren: 0.18,
+      delayChildren: 0.1
+    }
   }
 };
 
@@ -74,7 +36,7 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     try {
       const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
         method: 'POST',
@@ -104,9 +66,9 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-        <label htmlFor="name" className="block text-sm font-medium mb-2">
+        <label htmlFor="name" className="block text-sm font-semibold text-slate-200 mb-2">
           {t('contact.form.name')}
         </label>
         <input
@@ -114,13 +76,13 @@ const ContactForm = () => {
           id="name"
           value={formData.name}
           onChange={handleChange}
-          className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
           placeholder={t('contact.form.namePlaceholder')}
           required
         />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm font-medium mb-2">
+        <label htmlFor="email" className="block text-sm font-semibold text-slate-200 mb-2">
           {t('contact.form.email')}
         </label>
         <input
@@ -128,13 +90,13 @@ const ContactForm = () => {
           id="email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
           placeholder={t('contact.form.emailPlaceholder')}
           required
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm font-medium mb-2">
+        <label htmlFor="message" className="block text-sm font-semibold text-slate-200 mb-2">
           {t('contact.form.message')}
         </label>
         <textarea
@@ -142,14 +104,14 @@ const ContactForm = () => {
           value={formData.message}
           onChange={handleChange}
           rows={4}
-          className="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          className="w-full rounded-2xl border border-white/10 bg-slate-950/50 px-4 py-3 text-slate-100 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
           placeholder={t('contact.form.messagePlaceholder')}
           required
         ></textarea>
       </div>
       <button
         type="submit"
-        className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-lg font-semibold transition-colors"
+        className="w-full rounded-2xl bg-gradient-to-r from-cyan-400 via-emerald-400 to-lime-300 px-6 py-3 text-lg font-semibold text-slate-950 transition-transform duration-300 hover:scale-[1.02]"
       >
         {t('contact.form.submit')}
       </button>
@@ -179,26 +141,31 @@ function App() {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+    <div className="relative min-h-screen bg-[#0b0f14] text-slate-100 font-['Manrope']">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-40 left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.25),transparent_60%)] blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(16,185,129,0.18),transparent_60%)] blur-3xl"></div>
+      </div>
+
       {/* Navigation */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-gray-900/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+        isScrolled ? 'bg-[#0b0f14]/80 backdrop-blur-xl border-b border-white/5 shadow-lg' : 'bg-transparent'
       }`}>
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
-            <a href="#home" className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+            <a href="#home" className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-emerald-300 to-lime-200">
               YG
             </a>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               <div className="flex items-center space-x-4">
-                <LanguageSwitcher />
+                {/* <LanguageSwitcher /> */}
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="text-gray-300 hover:text-white transition-colors"
+                    className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
                   >
                     {t(`nav.${link.name.toLowerCase()}`)}
                   </a>
@@ -206,16 +173,18 @@ function App() {
               </div>
               <a
                 href="mailto:yibeltalgashaw320@example.com"
-                className="px-4 py-2 bg-blue-600 hover:bg-gradient-to-r from-purple-600 to-purple-40 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/20"
               >
                 {t('nav.getInTouch')}
+                <ArrowUpRight size={16} />
               </a>
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-gray-300 hover:text-white"
+              className="md:hidden text-slate-300 hover:text-white"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -223,13 +192,13 @@ function App() {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden">
-              <div className="px-2 pt-2 pb-3 space-y-1">
+            <div className="md:hidden rounded-2xl bg-[#0b0f14]/95 border border-white/5 p-4 mb-4">
+              <div className="space-y-2">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
-                    className="block px-3 py-2 text-gray-300 hover:text-white transition-colors"
+                    className="block rounded-xl px-3 py-2 text-slate-300 hover:text-white hover:bg-white/5 transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {link.name}
@@ -242,127 +211,147 @@ function App() {
       </nav>
 
       {/* Hero Section */}
-      <header id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80')] bg-cover bg-center opacity-10"></div>
-        <div className="container mx-auto px-6 py-24 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-            {/* Text Content */}
-            <motion.div 
-              className="max-w-2xl text-center md:text-left"
-              initial="initial"
-              animate="animate"
-              variants={smoothFadeIn}
-            >
-              <motion.h1 
-                variants={smoothSlideInFromLeft}
-                className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-emerald-400"
+      <header id="home" className="relative min-h-screen flex items-center pt-20">
+        <div className="container mx-auto px-6 py-20 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-14 items-center">
+            <motion.div initial="initial" animate="animate" variants={fadeIn}>
+              <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-300">
+                Full-stack developer
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                Open to remote
+              </motion.div>
+              <motion.h1
+                variants={fadeInUp}
+                className="mt-6 text-4xl sm:text-5xl md:text-6xl font-semibold leading-[1.05] tracking-tight text-white font-['Space_Grotesk']"
               >
                 {t('hero.greeting')}
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-emerald-300 to-lime-200">
+                  {t('hero.title')}
+                </span>
               </motion.h1>
-              <motion.p 
-                variants={smoothSlideInFromRight}
-                className="text-2xl md:text-3xl text-gray-300 mb-8"
-              >
-                {t('hero.title')}
-              </motion.p>
-              <motion.p 
-                variants={smoothSlideUp}
-                className="text-xl text-gray-400 mb-12 leading-relaxed"
-              >
+              <motion.p variants={fadeInUp} className="mt-6 text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl">
                 {t('hero.description')}
               </motion.p>
-              <div className="flex justify-center gap-6">
-                <a href="https://github.com" className="text-gray-400 hover:text-blue-400 transition-colors">
-                  <Github size={24} />
-                </a>
-                <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="text-gray-400 hover:text-blue-400 transition-colors">
-                  <Linkedin size={24} />
-                </a>
-                <a href="mailto:yibeltalgashaw320@example.com" className="text-gray-400 hover:text-blue-400 transition-colors">
-                  <Mail size={24} />
-                </a>
-              </div>
-              <div className="mt-6">
+
+              <motion.div variants={fadeInUp} className="mt-8 flex flex-wrap items-center gap-4">
                 <a
-                  href="./src/cv/my_cv.pdf"
-                  download // group-hover:scale-110 transition-transform duration-300
-                  className="group inline-flex items-center justify-center gap-3 w-50 px-6 py-3 bg-blue-600 hover:bg-gradient-to-r from-purple-600 to-purple-400 rounded-lg text-lg font-medium text-gray-400 hover:text-white transition-all duration-300"
+                  href="#projects"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 via-emerald-400 to-lime-300 px-6 py-3 text-sm font-semibold text-slate-950 transition-transform duration-300 hover:scale-[1.02]"
                 >
-                  <span className="font-medium">{t('hero.downloadCV')}</span>
-                  <svg 
-                    className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                    />
-                  </svg>
+                  View Projects
+                  <ArrowUpRight size={16} />
                 </a>
-              </div>
+                <a
+                  href="#"
+                  
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                >
+                  {t('hero.downloadCV')}
+                </a>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="mt-8 flex items-center gap-6 text-slate-400">
+                <a href="https://github.com" className="hover:text-cyan-300 transition-colors" aria-label="GitHub">
+                  <Github size={22} />
+                </a>
+                <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="hover:text-cyan-300 transition-colors" aria-label="LinkedIn">
+                  <Linkedin size={22} />
+                </a>
+                <a href="mailto:yibeltalgashaw320@example.com" className="hover:text-cyan-300 transition-colors" aria-label="Email">
+                  <Mail size={22} />
+                </a>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-4">
+                {[
+                  { label: 'Years Experience', value: '4+' },
+                  { label: 'Projects Shipped', value: '20+' },
+                  { label: 'Countries Served', value: '6' }
+                ].map((stat) => (
+                  <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                    <div className="text-2xl font-semibold text-white">{stat.value}</div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-slate-400">{stat.label}</div>
+                  </div>
+                ))}
+              </motion.div>
             </motion.div>
-            
-            {/* Profile Photo */}
-            <motion.div 
-              className="relative w-64 h-64 md:w-80 md:h-80 group"
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+
+            <motion.div
+              className="relative"
+              initial="initial"
+              animate="animate"
+              variants={stagger}
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-emerald-500/20 rounded-2xl transform -rotate-45 group-hover:-rotate-12 transition-transform duration-300"></div>
-              <div className="relative bg-gray-900 p-4 rounded-2xl shadow-xl transform -rotate-30">
-                <div className="rounded-sm -mt-8 bg-sky-300 overflow-hidden border-1 border-blue-400/30">
-                  <img 
+              <motion.div variants={fadeInUp} className="relative rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/10 to-transparent p-4 shadow-2xl">
+                <div className="rounded-[2rem] bg-slate-950/70 p-4">
+                  <img
                     src="https://res.cloudinary.com/dyzeb4vxu/image/upload/v1732190918/pp4_fu1hoo.jpg"
                     alt="Yibeltal Gashaw"
-                    className="w-full h-full object-cover transform rotate-5 group-hover:scale-105 transition-transform duration-300"
+                    className="h-80 w-full rounded-[1.6rem] object-cover"
                   />
+                  <div className="mt-5 flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-white">Yibeltal Gashaw</h3>
+                      <p className="text-sm text-slate-400">Full Stack Developer</p>
+                    </div>
+                    <div className="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200">Addis Ababa</div>
+                  </div>
                 </div>
-                <div className="mt-4 text-center transform rotate-30">
-                  <h3 className="text-lg font-semibold text-blue-400">Yibeltal Gashaw</h3>
-                  <p className="text-gray-400 text-sm">Full Stack Developer</p>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="absolute -bottom-6 -left-6 rounded-2xl border border-white/10 bg-slate-950/80 px-4 py-3 shadow-xl">
+                <div className="text-xs uppercase tracking-[0.2em] text-slate-400">Specialties</div>
+                <div className="mt-2 flex flex-wrap gap-2 text-xs text-white">
+                  <span className="rounded-full bg-white/10 px-3 py-1">Design Systems</span>
+                  <span className="rounded-full bg-white/10 px-3 py-1">APIs</span>
+                  <span className="rounded-full bg-white/10 px-3 py-1">Cloud</span>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
       </header>
 
       {/* Skills Section */}
-      <section id="skills" className="py-24 bg-gray-800/50">
+      <section id="skills" className="py-24 bg-[#0b0f14]/60">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Technical Expertise</h2>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-            variants={staggerContainer}
+          <div className="max-w-3xl mx-auto text-center">
+            <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Expertise</p>
+            <h2 className="mt-4 text-3xl md:text-4xl font-semibold text-white font-['Space_Grotesk']">Technical Toolkit</h2>
+            <p className="mt-4 text-slate-300">
+              End-to-end product delivery with a balance of engineering rigor and UX craft.
+            </p>
+          </div>
+          <motion.div
+            className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            variants={stagger}
             initial="initial"
             whileInView="animate"
-            viewport={{ 
-              once: true, 
-              margin: "-100px",
-              amount: 0.3 // Trigger animation when 30% of element is in view
-            }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             {[
-              { icon: <Layout className="w-8 h-8 mb-4 text-blue-400" />, title: 'Frontend', skills: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'] },
-              { icon: <Server className="w-8 h-8 mb-4 text-emerald-400" />, title: 'Backend', skills: ['Node.js', 'Express', 'Python', 'Java'] },
-              { icon: <Database className="w-8 h-8 mb-4 text-purple-400" />, title: 'Database', skills: ['MongoDB', 'PostgreSQL', 'Redis', 'MySQL'] },
-              { icon: <Code2 className="w-8 h-8 mb-4 text-orange-400" />, title: 'DevOps', skills: ['Docker', 'AWS', 'CI/CD', 'Git'] },
+              { icon: <Layout className="w-7 h-7 text-cyan-300" />, title: 'Frontend', skills: ['React', 'TypeScript', 'Tailwind CSS', 'Next.js'] },
+              { icon: <Server className="w-7 h-7 text-emerald-300" />, title: 'Backend', skills: ['Node.js', 'Express', 'Python', 'Java'] },
+              { icon: <Database className="w-7 h-7 text-lime-300" />, title: 'Database', skills: ['MongoDB', 'PostgreSQL', 'Redis', 'MySQL'] },
+              { icon: <Code2 className="w-7 h-7 text-orange-300" />, title: 'DevOps', skills: ['Docker', 'AWS', 'CI/CD', 'Git'] },
             ].map((category, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-900/50 p-8 rounded-xl backdrop-blur-sm"
+                className="rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-transparent p-6 shadow-xl"
                 variants={fadeInUp}
-                whileHover={smoothHover}
+                whileHover={{ y: -6 }}
+                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
               >
-                {category.icon}
-                <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-                <ul className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <div className="rounded-2xl bg-white/10 p-3">
+                    {category.icon}
+                  </div>
+                  <span className="text-xs uppercase tracking-[0.2em] text-slate-400">Core</span>
+                </div>
+                <h3 className="mt-6 text-lg font-semibold text-white">{category.title}</h3>
+                <ul className="mt-4 space-y-2 text-sm text-slate-300">
                   {category.skills.map((skill, skillIndex) => (
-                    <li key={skillIndex} className="text-gray-400">{skill}</li>
+                    <li key={skillIndex}>{skill}</li>
                   ))}
                 </ul>
               </motion.div>
@@ -372,115 +361,55 @@ function App() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">Featured Projects</h2>
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {[
-              {
-                title: 'E-Commerce Platform',
-                description: 'Full-stack e-commerce solution with real-time inventory management',
-                image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&q=80',
-                tech: ['React', 'Node.js', 'MongoDB']
-              },
-              {
-                title: 'Task Management System',
-                description: 'Collaborative project management tool with real-time updates',
-                image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80',
-                tech: ['Next.js', 'PostgreSQL', 'WebSocket']
-              },
-              {
-                title: 'Analytics Dashboard',
-                description: 'Data visualization platform with advanced filtering capabilities',
-                image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80',
-                tech: ['React', 'D3.js', 'Express']
-              },
-            ].map((project, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-900/50 rounded-xl overflow-hidden group"
-                variants={fadeInUp}
-                whileHover={smoothHover}
-              >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-400 mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((tech, techIndex) => (
-                      <span key={techIndex} className="px-3 py-1 bg-gray-800 rounded-full text-sm text-gray-300">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <a href="#" className="inline-flex items-center text-blue-400 hover:text-blue-300">
-                    View Project <ExternalLink className="ml-2 w-4 h-4" />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      <FeaturedSection/>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gray-900">
+      <section id="contact" className="py-24 bg-[#0b0f14]/70">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">Let's Work Together</h2>
-            <p className="text-gray-400 text-center mb-12">
-              I'm always interested in hearing about new projects and opportunities.
-              Feel free to reach out if you'd like to collaborate or just want to connect!
-            </p>
-            
-             <motion.div 
-              className="grid md:grid-cols-2 gap-12"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+            <div className="text-center">
+              <p className="text-xs uppercase tracking-[0.3em] text-slate-400">Contact</p>
+              <h2 className="mt-4 text-3xl md:text-4xl font-semibold text-white font-['Space_Grotesk']">Let&apos;s Build Something Remarkable</h2>
+              <p className="mt-4 text-slate-300">
+                I&apos;m always interested in new collaborations and product challenges.
+                Share a quick brief and we&apos;ll take it from there.
+              </p>
+            </div>
+
+            <motion.div
+              className="mt-12 grid md:grid-cols-2 gap-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              {/* Contact Form */}
-              <div className="bg-gray-800/50 p-8 rounded-xl">
+              <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
                 <ContactForm />
               </div>
 
-              {/* Contact Information */}
-              <div className="space-y-8">
-                <div className="bg-gray-800/50 p-8 rounded-xl">
-                  <h3 className="text-xl font-semibold mb-4">Contact Information</h3>
-                  <div className="space-y-4">
-                    <a href="mailto:yibeltalgashaw320@example.com" className="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
-                      <Mail className="w-5 h-5 mr-3" />
+              <div className="space-y-6">
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+                  <h3 className="text-lg font-semibold text-white">Contact Information</h3>
+                  <div className="mt-4 space-y-4 text-slate-300">
+                    <a href="mailto:yibeltalgashaw320@example.com" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
+                      <Mail className="w-5 h-5" />
                       yibeltalgashaw320@example.com
                     </a>
-                    <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
-                      <Linkedin className="w-5 h-5 mr-3" />
+                    <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
+                      <Linkedin className="w-5 h-5" />
                       LinkedIn Profile
                     </a>
-                    <a href="https://github.com" className="flex items-center text-gray-300 hover:text-blue-400 transition-colors">
-                      <Github className="w-5 h-5 mr-3" />
+                    <a href="https://github.com" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
+                      <Github className="w-5 h-5" />
                       GitHub Profile
                     </a>
                   </div>
                 </div>
-                
-                <div className="bg-gray-800/50 p-8 rounded-xl">
-                  <h3 className="text-xl font-semibold mb-4">Location</h3>
-                  <p className="text-gray-300">Addis Ababa, Ethiopia</p>
-                  <p className="text-gray-400 mt-2">Available for remote work worldwide</p>
+
+                <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
+                  <h3 className="text-lg font-semibold text-white">Location</h3>
+                  <p className="mt-2 text-slate-200">Addis Ababa, Ethiopia</p>
+                  <p className="mt-2 text-sm text-slate-400">Available for remote work worldwide</p>
                 </div>
               </div>
             </motion.div>
@@ -488,79 +417,73 @@ function App() {
         </div>
       </section>
 
-     
-
       {/* Footer */}
-      <footer className="py-12 bg-gray-900/50 border-t border-gray-800">
+      <footer className="py-12 border-t border-white/5">
         <div className="container mx-auto px-6">
-          {/* Footer Content Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-8">
-            {/* Logo and Description */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-8">
             <div className="col-span-1 md:col-span-2">
               <div className="flex items-center mb-4">
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+                <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-emerald-300 to-lime-200">
                   YG
                 </span>
               </div>
-              <p className="text-gray-400 mb-6">
-                Crafting exceptional digital experiences with modern technologies and innovative solutions.
+              <p className="text-slate-400 mb-6">
+                Crafting polished digital experiences with modern technologies and a product-first mindset.
               </p>
               <div className="flex space-x-4">
-                <a href="https://github.com/yibeltal-gashaw" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <a href="https://github.com/yibeltal-gashaw" className="text-slate-400 hover:text-cyan-300 transition-colors" aria-label="GitHub">
                   <Github size={20} />
                 </a>
-                <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="text-slate-400 hover:text-cyan-300 transition-colors" aria-label="LinkedIn">
                   <Linkedin size={20} />
                 </a>
-                <a href="mailto:yibeltalgashaw320@example.com" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <a href="mailto:yibeltalgashaw320@example.com" className="text-slate-400 hover:text-cyan-300 transition-colors" aria-label="Email">
                   <Mail size={20} />
                 </a>
               </div>
             </div>
 
-            {/* Quick Links */}
             <div>
-              <h3 className="text-lg font-semibold mb-4 bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Quick Links</h3>
-              <ul className="space-y-4">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300 mb-4">Quick Links</h3>
+              <ul className="space-y-3 text-slate-400">
                 <li>
-                  <a href="#home" className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300">
-                    <span className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-300">
-                      <Home size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                  <a href="#home" className="group flex items-center gap-3 hover:text-white transition-colors">
+                    <span className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <Home size={16} />
                     </span>
-                    <span className="font-medium">Home</span>
+                    Home
                   </a>
                 </li>
                 <li>
-                  <a href="#skills" className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300">
-                    <span className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gradient-to-r from-emerald-600 to-emerald-400 transition-all duration-300">
-                      <Code2 size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                  <a href="#skills" className="group flex items-center gap-3 hover:text-white transition-colors">
+                    <span className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <Code2 size={16} />
                     </span>
-                    <span className="font-medium">Skills</span>
+                    Skills
                   </a>
                 </li>
                 <li>
-                  <a href="#projects" className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300">
-                    <span className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gradient-to-r from-purple-600 to-purple-400 transition-all duration-300">
-                      <FolderOpen size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                  <a href="#projects" className="group flex items-center gap-3 hover:text-white transition-colors">
+                    <span className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <FolderOpen size={16} />
                     </span>
-                    <span className="font-medium">Projects</span>
+                    Projects
                   </a>
                 </li>
                 <li>
-                  <a href="#contact" className="group flex items-center gap-3 text-gray-400 hover:text-white transition-all duration-300">
-                    <span className="p-2 rounded-lg bg-gray-800/50 group-hover:bg-gradient-to-r from-pink-600 to-pink-400 transition-all duration-300">
-                      <MessageSquare size={18} className="group-hover:scale-110 transition-transform duration-300" />
+                  <a href="#contact" className="group flex items-center gap-3 hover:text-white transition-colors">
+                    <span className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <MessageSquare size={16} />
                     </span>
-                    <span className="font-medium">Contact</span>
+                    Contact
                   </a>
                 </li>
               </ul>
             </div>
 
-            {/* Contact Info */}
             <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
-              <ul className="space-y-2 text-gray-400">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300 mb-4">Contact</h3>
+              <ul className="space-y-2 text-slate-400 text-sm">
                 <li>Addis Ababa, Ethiopia</li>
                 <li>yibeltalgashaw320@example.com</li>
                 <li>Available for remote work</li>
@@ -568,9 +491,8 @@ function App() {
             </div>
           </div>
 
-          {/* Copyright */}
-          <div className="pt-8 border-t border-gray-800 text-center text-gray-400">
-            <p>© {new Date().getFullYear()} Yibeltal Gashaw. All rights reserved.</p>
+          <div className="pt-6 border-t border-white/5 text-center text-slate-500 text-sm">
+            <p>(c) {new Date().getFullYear()} Yibeltal Gashaw. All rights reserved.</p>
           </div>
         </div>
       </footer>
