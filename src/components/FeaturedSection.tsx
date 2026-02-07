@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 import welcome from "../images/wellcome.png";
@@ -32,18 +31,6 @@ const ProjectCard = ({
     };
     index: number;
 }) => {
-    const [activeIndex, setActiveIndex] = useState(0);
-
-    useEffect(() => {
-        if (project.images.length <= 1) return;
-
-        const interval = window.setInterval(() => {
-            setActiveIndex((prev) => (prev + 1) % project.images.length);
-        }, 3500);
-
-        return () => window.clearInterval(interval);
-    }, [project.images.length]);
-
     return (
         <motion.div
             key={index}
