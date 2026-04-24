@@ -54,7 +54,7 @@ A modern, bilingual portfolio website built with React + TypeScript + Vite + Tai
 
 1. Clone the repository
    bash
-  git clone https://github.com/yibeltal-gashaw/portfolio-website
+  git clone https://github.com/banteamlak1888/portfolio.git
   cd portfolio
 2. Install dependencies
    bash
