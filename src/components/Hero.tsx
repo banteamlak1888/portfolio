@@ -70,10 +70,10 @@ const Hero = () => {
                             <a href="https://github.com" className="hover:text-cyan-300 transition-colors" aria-label="GitHub">
                                 <Github size={22} />
                             </a>
-                            <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="hover:text-cyan-300 transition-colors" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/banteamlak-begashaw-a11704298" className="hover:text-cyan-300 transition-colors" aria-label="LinkedIn">
                                 <Linkedin size={22} />
                             </a>
-                            <a href="mailto:yibeltalgashaw320@example.com" className="hover:text-cyan-300 transition-colors" aria-label="Email">
+                            <a href="mailto:banteamlak1888@gmail.com" className="hover:text-cyan-300 transition-colors" aria-label="Email">
                                 <Mail size={22} />
                             </a>
                         </motion.div>
@@ -102,12 +102,12 @@ const Hero = () => {
                             <div className="rounded-[2rem] bg-slate-950/70 p-4">
                                 <img
                                     src={profile}
-                                    alt="Yibeltal Gashaw"
+                                    alt="Banteamlak Begashaw"
                                     className="mx-auto h-64 w-64 rounded-full object-cover ring-2 ring-white/15"
                                 />
                                 <div className="mt-5 flex items-center justify-between">
                                     <div>
-                                        <h3 className="text-lg font-semibold text-white">Yibeltal Gashaw</h3>
+                                        <h3 className="text-lg font-semibold text-white">Banteamlak Begashaw</h3>
                                         <p className="text-sm text-slate-400">Full Stack Developer</p>
                                     </div>
                                     <div className="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200">Addis Ababa</div>
@@ -119,7 +119,7 @@ const Hero = () => {
                             <div className="text-xs uppercase tracking-[0.2em] text-slate-400">Specialties</div>
                             <div className="mt-2 flex flex-wrap gap-2 text-xs text-white">
                                 <span className="rounded-full bg-white/10 px-3 py-1">Design Systems</span>
-                                <span className="rounded-full bg-white/10 px-3 py-1">APIs</span>
+                                <span className="rounded-full bg-white/10 px-3 py-1">AI</span>
                                 <span className="rounded-full bg-white/10 px-3 py-1">Cloud</span>
                             </div>
                         </motion.div>
