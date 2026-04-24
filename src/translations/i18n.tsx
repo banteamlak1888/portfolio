@@ -22,15 +22,16 @@ const resources = {
         }
       },
       hero: {
-        greeting: "Hello, I'm Yibeltal",
-        title: "Full Stack Developer",
-        description: "Crafting robust and scalable web applications with modern technologies. Passionate about creating exceptional user experiences and efficient backend solutions.",
+        greeting: "Hello, I'm Banteamlak",
+        title: "AI Specialist & Data Analyst",
+        description: "I am a university lecturer passionate about AI and data science, with strong research, problem-solving, and academic skills. I am committed to continuous learning and actively seek deeper engagement in research environments. ",
         downloadCV: "Download CV",
       },
       nav: {
         home: "Home",
         skills: "Skills",
         projects: "Projects",
+        certifcates: "Certificates",
         contact: "Contact",
         getInTouch: "Get in Touch"
       }

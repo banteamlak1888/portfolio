@@ -1,4 +1,4 @@
-![Desktop Home](https://res.cloudinary.com/dyzeb4vxu/image/upload/v1732713477/Screenshot_2024-11-27_161221_lsxhrs.png)
+
 
 <details>
 <summary>More Desktop Screenshots</summary>
@@ -13,7 +13,7 @@
 
 </details>
 
-# Yibeltal Gashaw - Portfolio Website
+# Banteamlak Begashaw - Portfolio Website
 
 A modern, bilingual portfolio website built with React + TypeScript + Vite + Tailwind CSS. The site supports two languages (English and Amharic).
 

@@ -287,11 +287,11 @@ function App() {
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
                   <h3 className="text-lg font-semibold text-white">Contact Information</h3>
                   <div className="mt-4 space-y-4 text-slate-300">
-                    <a href="mailto:yibeltalgashaw320@example.com" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
+                    <a href="mailto:banteamlak1888@gmail.com" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
                       <Mail className="w-5 h-5" />
-                      yibeltalgashaw320@example.com
+                      banteamlak1888@gmail.com
                     </a>
-                    <a href="https://www.linkedin.com/in/yibeltal-gashaw21/" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
+                    <a href="https://www.linkedin.com/in/banteamlak-begashaw-a11704298" className="flex items-center gap-3 hover:text-cyan-300 transition-colors">
                       <Linkedin className="w-5 h-5" />
                       LinkedIn Profile
                     </a>
@@ -305,7 +305,7 @@ function App() {
                 <div className="rounded-3xl border border-white/10 bg-white/5 p-8">
                   <h3 className="text-lg font-semibold text-white">Location</h3>
                   <p className="mt-2 text-slate-200">Addis Ababa, Ethiopia</p>
-                  <p className="mt-2 text-sm text-slate-400">Available for remote work worldwide</p>
+                  <p className="mt-2 text-sm text-slate-400">Available for remote and onsite work worldwide</p>
                 </div>
               </div>
             </motion.div>
@@ -371,6 +371,15 @@ function App() {
                     <span className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
                       <MessageSquare size={16} />
                     </span>
+
+                    certifcates
+                  </a>
+                </li>
+                <li>
+                  <a href="#contact" className="group flex items-center gap-3 hover:text-white transition-colors">
+                    <span className="p-2 rounded-lg bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <MessageSquare size={16} />
+                    </span>
                     Contact
                   </a>
                 </li>
@@ -381,14 +390,14 @@ function App() {
               <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-300 mb-4">Contact</h3>
               <ul className="space-y-2 text-slate-400 text-sm">
                 <li>Addis Ababa, Ethiopia</li>
-                <li>yibeltalgashaw320@example.com</li>
-                <li>Available for remote work</li>
+                <li>banteamlak1888@gmail.com</li>
+                <li>Available for remote and onsite work</li>
               </ul>
             </div>
           </div>
 
           <div className="pt-6 border-t border-white/5 text-center text-slate-500 text-sm">
-            <p>(c) {new Date().getFullYear()} Yibeltal Gashaw. All rights reserved.</p>
+            <p>(c) {new Date().getFullYear()} Banteamlak Begashaw. All rights reserved.</p>
           </div>
         </div>
       </footer>
