@@ -167,7 +167,7 @@ function App() {
                 ))}
               </div>
               <a
-                href="mailto:yibeltalgashaw320@example.com"
+                href="mailto:banteamlak1888@gmail.com"
                 className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-white/20"
               >
                 {t('nav.getInTouch')}
