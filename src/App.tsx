@@ -149,7 +149,7 @@ function App() {
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between h-16">
             <a href="#home" className="text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-emerald-300 to-lime-200">
-              YG
+              BB
             </a>
 
             {/* Desktop Navigation */}
